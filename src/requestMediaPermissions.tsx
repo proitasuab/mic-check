@@ -1,4 +1,4 @@
-import Bowser from 'bowser/es5';
+import Bowser from 'bowser/src';
 
 export type MediaPermissionsError = {
 	type?: MediaPermissionsErrorType;
