@@ -1,37 +1,56 @@
 {
-	"name": "mic-check",
-	"title": "mic-check",
-	"version": "1.1.0",
-	"description": "A wrapper for requesting audio and video permissions on JavaScript websites.",
-	"main": "lib/index.js",
-	"module": "lib/index.js",
-	"types": "lib/index.d.ts",
-	"files": [
-		"lib/**/*"
-	],
-	"scripts": {
-		"clean": "rimraf lib/",
-		"build": "npm run clean && tsc",
-		"prepare": "npm run build",
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/gtechnologies/mic-check.git",
-		"baseUrl": "https://github.com/gtechnologies/mic-check"
-	},
-	"keywords": [
-		"javascript",
-		"react",
-		"permissions"
-	],
-	"readmeFilename": "README.md",
-	"peerDependencies": {},
-	"devDependencies": {
-		"prettier": "^2.4.1",
-		"typescript": "^4.4.3"
-	},
-	"dependencies": {
-		"bowser": "^2.11.0"
-	}
+  "name": "mic-check",
+  "title": "mic-check",
+  "version": "1.2.0",
+  "description": "A wrapper for requesting audio and video permissions on JavaScript websites.",
+  "type": "module",
+  "main": "./cjs/index.cjs",
+  "module": "./esm/index.js",
+  "types": "./types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "import": "./esm/index.js",
+      "require": "./cjs/index.cjs",
+      "default": "./esm/index.js"
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "esm/",
+    "cjs/",
+    "types/",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "clean": "rimraf esm cjs types",
+    "build:esm": "rimraf esm types && tsc -p tsconfig.json",
+    "build:cjs": "rimraf cjs && tsc -p tsconfig.cjs.json && node -e \"require('fs').cpSync('types','cjs/types',{recursive:true})\"",
+    "build": "npm run build:esm && npm run build:cjs",
+    "prepare": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gtechnologies/mic-check.git",
+    "baseUrl": "https://github.com/gtechnologies/mic-check"
+  },
+  "keywords": [
+    "javascript",
+    "react",
+    "permissions"
+  ],
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "prettier": "^3.6.2",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "bowser": "^2.12.1"
+  }
 }
