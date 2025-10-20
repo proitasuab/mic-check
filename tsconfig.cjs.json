@@ -11,6 +11,9 @@
     "lib": ["es2018", "dom"],
     "jsx": "react"
   },
-  "include": ["src"],
+  "include": [
+    "src",
+    "src/@types"
+  ],
   "exclude": ["node_modules", "examples"]
 }
