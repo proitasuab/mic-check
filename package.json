@@ -50,9 +50,7 @@
     "rimraf": "^6.0.1",
     "typescript": "^5.1.6"
   },
-  "peerDependencies": {
-    "bowser": "^2.12.1"
-  },
   "dependencies": {
+    "bowser": "^2.12.1"
   }
 }
